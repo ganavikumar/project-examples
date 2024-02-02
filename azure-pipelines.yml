@@ -4,28 +4,20 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- main  # Adjust the branch name as needed
+- master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: ubuntu-latest
 
-jobs:
-- job: BuildAndDeploy
-  displayName: 'Build and Deploy to Artifactory'
-  steps:
-  - task: UseJavaVersion@0
-    inputs:
-      versionSpec: '11'
-      addToPath: true
-
-  - checkout: self
-
-  - script: ./gradlew clean build artifactoryPublish
-    displayName: 'Build and Publish to Artifactory'
-    workingDirectory: '$(System.DefaultWorkingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/build/libs'
-      artifactName: 'drop'
-      publishLocation: 'Container'
+steps:
+- task: Gradle@2
+  inputs:
+    workingDirectory: 'my-project'
+    gradleWrapperFile: ''
+    gradleOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'build'
