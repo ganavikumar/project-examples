@@ -12,7 +12,7 @@ pipeline {
                 rtServer (
                     id: "maven-cloud",
                     url: 'https://ganavijfrog.jfrog.io/',
-                    credentialsId: CREDENTIALS
+                    credentialsId: ganavik
                 )
 
                 rtMavenDeployer (
