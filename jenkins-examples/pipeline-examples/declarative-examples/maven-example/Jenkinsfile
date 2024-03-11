@@ -3,30 +3,30 @@ pipeline {
     stages {
         stage ('Clone') {
             steps {
-                git branch: 'master', url: "https://github.com/jfrog/project-examples.git"
+                git branch: 'master', url: "https://github.com/ganavikumar/project-examples.git"
             }
         }
 
         stage ('Artifactory configuration') {
             steps {
                 rtServer (
-                    id: "ARTIFACTORY_SERVER",
+                    id: "maven-cloud",
                     url: SERVER_URL,
                     credentialsId: CREDENTIALS
                 )
 
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
-                    serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: ARTIFACTORY_LOCAL_RELEASE_REPO,
-                    snapshotRepo: ARTIFACTORY_LOCAL_SNAPSHOT_REPO
+                    serverId: "maven-cloud",
+                    releaseRepo: ‘clous-libs-release-local’,
+                    snapshotRepo: ‘clous-libs-snapshot-local’
                 )
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
                     serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: ARTIFACTORY_VIRTUAL_RELEASE_REPO,
-                    snapshotRepo: ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO
+                    releaseRepo: ‘clous-libs-release',
+                    snapshotRepo: ‘clous-libs-snapshot’
                 )
             }
         }
@@ -34,7 +34,7 @@ pipeline {
         stage ('Exec Maven') {
             steps {
                 rtMavenRun (
-                    tool: MAVEN_TOOL, // Tool name from Jenkins configuration
+                    tool: ‘maven-test’, // Tool name from Jenkins configuration
                     pom: 'maven-examples/maven-example/pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
@@ -46,7 +46,7 @@ pipeline {
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
-                    serverId: "ARTIFACTORY_SERVER"
+                    serverId: ‘maven-cloud’
                 )
             }
         }
