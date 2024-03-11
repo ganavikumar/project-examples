@@ -34,7 +34,7 @@ pipeline {
         stage ('Exec Maven') {
             steps {
                 rtMavenRun (
-                    tool: ‘maven-test’, // Tool name from Jenkins configuration
+                    tool: 'maven-test', // Tool name from Jenkins configuration
                     pom: 'maven-examples/maven-example/pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
@@ -46,7 +46,7 @@ pipeline {
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
-                    serverId: ‘maven-cloud’
+                    serverId: 'maven-cloud'
                 )
             }
         }
