@@ -11,7 +11,7 @@ pipeline {
             steps {
                 rtServer (
                     id: "maven-cloud",
-                    url: SERVER_URL,
+                    url: 'https://ganavijfrog.jfrog.io/',
                     credentialsId: CREDENTIALS
                 )
 
