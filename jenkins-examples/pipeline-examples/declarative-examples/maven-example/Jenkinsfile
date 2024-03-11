@@ -18,15 +18,15 @@ pipeline {
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
                     serverId: "maven-cloud",
-                    releaseRepo: ‘clous-libs-release-local’,
-                    snapshotRepo: ‘clous-libs-snapshot-local’
+                    releaseRepo: 'clous-libs-release-local',
+                    snapshotRepo: 'clous-libs-snapshot-local'
                 )
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
                     serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: ‘clous-libs-release',
-                    snapshotRepo: ‘clous-libs-snapshot’
+                    releaseRepo: 'clous-libs-release',
+                    snapshotRepo: 'clous-libs-snapshot'
                 )
             }
         }
