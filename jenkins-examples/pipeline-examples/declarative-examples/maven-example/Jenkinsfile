@@ -11,22 +11,22 @@ pipeline {
             steps {
                 rtServer (
                     id: "maven-cloud",
-                    url: 'https://ganavijfrog.jfrog.io',
+                    url: 'https://ganavijfrog.jfrog.io/',
                     credentialsId: 'cloud'
                 )
 
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
                     serverId: "maven-cloud",
-                    releaseRepo: 'clous-libs-release-local',
-                    snapshotRepo: 'clous-libs-snapshot-local'
+                    releaseRepo: 'test-libs-release-local',
+                    snapshotRepo: 'test-libs-snapshot-local'
                 )
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
                     serverId: "maven-cloud",
-                    releaseRepo: 'clous-libs-release',
-                    snapshotRepo: 'clous-libs-snapshot'
+                    releaseRepo: 'test-libs-release',
+                    snapshotRepo: 'test-libs-snapshot'
                 )
             }
         }
