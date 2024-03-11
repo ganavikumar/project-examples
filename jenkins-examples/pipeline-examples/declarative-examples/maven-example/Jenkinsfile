@@ -24,7 +24,7 @@ pipeline {
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
-                    serverId: "ARTIFACTORY_SERVER",
+                    serverId: "maven-cloud",
                     releaseRepo: 'clous-libs-release',
                     snapshotRepo: 'clous-libs-snapshot'
                 )
