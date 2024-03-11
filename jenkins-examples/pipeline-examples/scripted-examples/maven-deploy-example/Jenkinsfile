@@ -5,6 +5,7 @@ node {
     
     stage ('Clone') {
         git url: 'https://github.com/jfrog/project-examples.git'
+        
     }
  
     stage ('Artifactory configuration') {
@@ -34,7 +35,6 @@ node {
         
     stage ('Publish build info') {
         server.publishBuildInfo buildInfo
-        
          }
 }
 
