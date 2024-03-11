@@ -5,6 +5,7 @@ node {
     
     stage ('Clone') {
         git url: 'https://github.com/ganavikumar/project-examples.git'
+        
     }
  
     stage ('Artifactory configuration') {
