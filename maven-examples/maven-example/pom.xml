@@ -65,6 +65,7 @@
                 <configuration>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
+                        
                     </archive>
                 </configuration>
             </plugin>
