@@ -16,3 +16,16 @@ steps:
      command: 'restore'
      restoreSolution: '**/*.sln'
      feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    feedsToUse: 'select'
+    vstsFeed: '2b0aa5c8-66c3-4fb7-9061-b7b308b01d7e'
+    
+- task: ArtifactoryDotnetCore@1
+  inputs:
+    command: 'restore'
+    artifactoryService: 'nuget-test'
+    targetResolveRepo: 'test-baget-nuget-remote'
+    rootPath: '**/*.sln'
