@@ -1,23 +1,11 @@
 # Starter pipeline
 
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- master
-
-pool:
-  vmImage: ubuntu-latest
-
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
   
 - task: NuGetCommand@2
   inputs:
@@ -25,3 +13,7 @@ steps:
     restoreSolution: '**/*.sln'
     feedsToUse: 'select'
     vstsFeed: '0215435a-cb98-4b9a-a3fd-8f1eab664930'  
+- task: JfrogCliV2@1
+  inputs:
+    jfrogPlatformConnection: 'baget'
+    command: 'jfrog rt dotnet restore'
