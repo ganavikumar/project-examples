@@ -8,12 +8,6 @@
 
 steps:
   
-- task: NuGetCommand@2
-  inputs:
-    command: 'restore'
-    restoreSolution: '**/*.sln'
-    feedsToUse: 'select'
-    vstsFeed: '0215435a-cb98-4b9a-a3fd-8f1eab664930'  
 - task: JFrogNuGet@1
   inputs:
     command: 'restore'
