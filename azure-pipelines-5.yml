@@ -12,5 +12,5 @@ steps:
   inputs:
     command: 'restore'
     artifactoryConnection: 'baget-nuget'
-    targetResolveRepo: 'baget-main-virtual'
+    targetResolveRepo: 'nuget-main-virtual'
     solutionPath: '**/*.sln'
